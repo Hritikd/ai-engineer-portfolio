@@ -1,0 +1,525 @@
+/* ============================================================
+   GOOGLE FONTS
+   Inter — clean, modern sans-serif used by many tech products
+   Fira Code — monospace for the tech/code aesthetic in accents
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+
+/* ============================================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   Defined on :root so they're available everywhere.
+   Change the accent color here to retheme the whole site.
+   ============================================================ */
+:root {
+  /* Colors */
+  --bg-primary:    #0a0a0f;   /* Main page background — near black */
+  --bg-secondary:  #111118;   /* Cards and nav background */
+  --bg-hover:      #1a1a24;   /* Hover state for cards */
+  --border:        #1e1e2e;   /* Subtle borders */
+  --accent:        #7c6ef7;   /* Purple accent — stands out on dark bg */
+  --accent-glow:   rgba(124, 110, 247, 0.15); /* Soft glow for hover effects */
+
+  /* Text */
+  --text-primary:  #e8e8f0;   /* Main readable text */
+  --text-secondary:#8b8ba0;   /* Muted labels, metadata */
+  --text-accent:   #7c6ef7;   /* Accent-colored text (links, tags) */
+
+  /* Typography */
+  --font-body:  'Inter', system-ui, sans-serif;
+  --font-mono:  'Fira Code', 'Courier New', monospace;
+
+  /* Spacing scale */
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  8rem;
+
+  /* Layout */
+  --max-width: 1100px;
+  --radius:    8px;
+  --radius-lg: 16px;
+
+  /* Transitions */
+  --transition: 0.2s ease;
+}
+
+
+/* ============================================================
+   RESET & BASE
+   Remove browser inconsistencies. Set box model to border-box
+   so padding doesn't blow out element widths.
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Smooth scrolling when clicking anchor links in the nav */
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  /* Prevents horizontal scroll on mobile */
+  overflow-x: hidden;
+}
+
+/* Remove default list bullets — we'll style lists ourselves */
+ul {
+  list-style: none;
+}
+
+/* Make images responsive by default */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+
+/* ============================================================
+   TYPOGRAPHY SCALE
+   Consistent heading sizes across the site.
+   ============================================================ */
+h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.15; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem);   font-weight: 600; line-height: 1.3; }
+h3 { font-size: 1.1rem;                      font-weight: 600; line-height: 1.4; }
+
+p  { color: var(--text-secondary); max-width: 65ch; }
+
+/* Links — no underline by default, color on hover */
+a {
+  color: var(--text-accent);
+  text-decoration: none;
+  transition: color var(--transition), opacity var(--transition);
+}
+a:hover { opacity: 0.8; }
+
+
+/* ============================================================
+   LAYOUT UTILITY
+   .container centers content and limits max width.
+   Applied inside each section so sections can have full-width
+   backgrounds while content stays centered.
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+
+/* ============================================================
+   HEADER & NAVIGATION
+   Sticky top nav. Blurs the background when scrolling over
+   content using backdrop-filter for a modern glass effect.
+   ============================================================ */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(10, 10, 15, 0.85);
+  /* Frosted glass effect */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.1rem var(--space-md);
+}
+
+/* Logo / name in the nav */
+header nav > a {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  letter-spacing: -0.02em;
+}
+
+/* Nav link list — displayed in a row */
+header nav ul {
+  display: flex;
+  gap: var(--space-md);
+}
+
+header nav ul a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--transition);
+}
+
+header nav ul a:hover {
+  color: var(--text-primary);
+  opacity: 1;
+}
+
+
+/* ============================================================
+   SECTION BASE STYLES
+   Each section gets consistent vertical padding.
+   Section headings get a subtle left accent border.
+   ============================================================ */
+section {
+  padding: var(--space-lg) var(--space-md);
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* Section heading with accent underline */
+section h2 {
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+
+/* ============================================================
+   HERO SECTION
+   Full-viewport-height section with centered content.
+   The tagline uses the accent color. Positioning statement
+   is muted to create visual hierarchy.
+   ============================================================ */
+#hero {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* More top padding than other sections */
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  /* Subtle radial gradient from accent color to give depth */
+  background: radial-gradient(ellipse 80% 50% at 50% -10%, var(--accent-glow), transparent);
+}
+
+/* Small mono label above the name — "hey I'm" kind of thing */
+#hero::before {
+  content: '> hello world';
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+  opacity: 0.8;
+}
+
+#hero h1 {
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  /* Subtle text gradient for the name */
+  background: linear-gradient(135deg, #e8e8f0 0%, #7c6ef7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 500;
+  color: var(--text-primary) !important;
+  margin-bottom: var(--space-sm);
+  max-width: 55ch;
+}
+
+.positioning {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  max-width: 55ch;
+}
+
+/* CTA buttons row in hero */
+#hero nav {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+#hero nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all var(--transition);
+}
+
+/* First link (GitHub) — filled accent style */
+#hero nav a:first-child {
+  background-color: var(--accent);
+  color: #fff;
+}
+#hero nav a:first-child:hover {
+  background-color: #6a5de8;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Second link (LinkedIn) — outlined style */
+#hero nav a:last-child {
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+#hero nav a:last-child:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  opacity: 1;
+}
+
+
+/* ============================================================
+   ABOUT SECTION
+   Simple two-paragraph layout. Paragraphs have a max-width
+   for readability (65ch = ~65 characters wide).
+   ============================================================ */
+#about p {
+  margin-bottom: var(--space-sm);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+
+/* ============================================================
+   PROJECTS SECTION
+   CSS Grid layout — auto-fill columns that are at least 280px
+   wide, growing to fill available space. New cards just get
+   added to the HTML and they flow in automatically.
+   ============================================================ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+/* Individual project card */
+.project-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color var(--transition), background-color var(--transition), transform var(--transition);
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  background-color: var(--bg-hover);
+  transform: translateY(-3px);
+}
+
+.project-card h3 {
+  color: var(--text-primary);
+}
+
+/* Small tech label under the title — monospace for code feel */
+.project-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  max-width: none;
+}
+
+.project-description {
+  font-size: 0.875rem;
+  flex: 1; /* Pushes the link to the bottom of the card */
+}
+
+/* GitHub link at bottom of card */
+.project-card > a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+.project-card > a:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+
+
+/* ============================================================
+   SKILLS SECTION
+   Two skill group cards side by side using CSS Grid.
+   Each group has a heading and an unordered list of skills.
+   ============================================================ */
+.skills-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-md);
+}
+
+.skill-group {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+}
+
+.skill-group h3 {
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Each skill item — displayed as a pill/tag */
+.skill-group ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-group li {
+  background-color: var(--bg-hover);
+  border: 1px solid var(--border);
+  border-radius: 999px; /* Fully rounded pill shape */
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.skill-group li:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+
+/* ============================================================
+   CONTACT SECTION
+   Centered layout with the three contact links as styled pills.
+   ============================================================ */
+#contact {
+  text-align: center;
+}
+
+#contact h2 {
+  border-bottom: none; /* Override the default section h2 border here */
+  text-align: center;
+}
+
+#contact p {
+  margin: 0 auto var(--space-md);
+  text-align: center;
+}
+
+/* contact links container (the <address> element) */
+#contact address {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-style: normal; /* <address> defaults to italic — override it */
+}
+
+#contact address a {
+  display: inline-block;
+  padding: 0.65rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+
+#contact address a:hover {
+  border-color: var(--accent);
+  color: var(--text-primary);
+  background-color: var(--accent-glow);
+  opacity: 1;
+}
+
+
+/* ============================================================
+   FOOTER
+   Minimal, centered, muted text.
+   ============================================================ */
+footer {
+  text-align: center;
+  padding: var(--space-md);
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-lg);
+}
+
+footer p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  max-width: none;
+  margin: 0 auto;
+  font-family: var(--font-mono);
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLET (max 768px)
+   Collapse nav links, tighten spacing.
+   ============================================================ */
+@media (max-width: 768px) {
+  :root {
+    --space-lg: 3rem;
+    --space-xl: 5rem;
+  }
+
+  /* Stack nav links below the logo on small screens */
+  header nav {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  header nav ul {
+    gap: var(--space-sm);
+  }
+
+  /* Single-column project grid on mobile */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE — MOBILE (max 480px)
+   Further reduce font sizes and spacing for small phones.
+   ============================================================ */
+@media (max-width: 480px) {
+  section {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  #hero nav {
+    flex-direction: column;
+  }
+
+  #hero nav a {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .skills-groups {
+    grid-template-columns: 1fr;
+  }
+}

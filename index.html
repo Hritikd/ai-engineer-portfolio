@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Ensures proper scaling on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hritik Datta — AI Engineer building intelligent systems with LLMs, agents, and tools." />
+    <title>Hritik Datta | AI Engineer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+
+    <!-- =====================
+         NAVIGATION
+         Fixed top nav with links to each section.
+         Uses anchor links (#section-id) for smooth scrolling.
+    ========================== -->
+    <header>
+      <nav>
+        <a href="#hero">Hritik Datta</a>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- =====================
+         MAIN CONTENT
+         Wraps all page sections for semantic structure.
+    ========================== -->
+    <main>
+
+      <!-- =====================
+           HERO SECTION
+           First thing visitors see. Name, tagline, positioning
+           statement, and links to GitHub and LinkedIn.
+      ========================== -->
+      <section id="hero">
+        <h1>Hritik Datta</h1>
+        <p class="tagline">Building intelligent systems with LLMs, agents, and tools.</p>
+        <p class="positioning">
+          AI Engineer focused on Claude API, tool use, MCP servers, and
+          deploying AI-powered applications that solve real problems.
+        </p>
+        <!-- Primary CTAs — open in new tab so user doesn't lose the portfolio -->
+        <nav aria-label="Social links">
+          <a href="https://github.com/hritikdatta" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://linkedin.com/in/hritikdatta" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </section>
+
+      <!-- =====================
+           ABOUT SECTION
+           Short bio covering background, skills, and goals.
+           Positions Hritik as a full-stack AI builder.
+      ========================== -->
+      <section id="about">
+        <h2>About Me</h2>
+        <p>
+          I build AI-powered tools and understand the full stack — from prompt
+          engineering and context design to MCP servers, tool use, and deployed
+          applications. My focus is on the emerging layer of AI engineering:
+          connecting LLMs to real systems, real data, and real users.
+        </p>
+        <p>
+          I'm learning in public, building projects that demonstrate what modern
+          AI engineering looks like — not just calling an API, but designing
+          agents, orchestrating tools, and shipping things that work.
+        </p>
+      </section>
+
+      <!-- =====================
+           PROJECTS SECTION
+           A CSS Grid of project cards. Each card shows:
+           - Project title
+           - Short description of what it demonstrates technically
+           - Link to the GitHub repo
+           New cards can be added by duplicating the <article> block.
+      ========================== -->
+      <section id="projects">
+        <h2>Projects</h2>
+
+        <!-- Project grid container — CSS Grid layout will be applied via style.css -->
+        <div class="projects-grid">
+
+          <!-- Project Card 1: AI Weather Assistant -->
+          <article class="project-card">
+            <h3>AI Weather Assistant</h3>
+            <p class="project-subtitle">Tool Use &amp; Function Calling</p>
+            <p class="project-description">
+              Demonstrates Claude API tool use with real-time data. The assistant
+              decides when to call external APIs, interprets the results, and
+              responds in natural language — a core pattern in production AI systems.
+            </p>
+            <!-- Replace # with the actual repo URL when published -->
+            <a href="#" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+          </article>
+
+          <!-- More project cards will be added here as projects are built -->
+
+        </div>
+      </section>
+
+      <!-- =====================
+           SKILLS SECTION
+           Grouped into two categories:
+           1. AI & LLMs — the AI engineering layer
+           2. Development — the software engineering layer
+           Uses <ul> lists inside <article> blocks for semantic grouping.
+      ========================== -->
+      <section id="skills">
+        <h2>Skills</h2>
+
+        <div class="skills-groups">
+
+          <!-- Group 1: AI and LLM skills -->
+          <article class="skill-group">
+            <h3>AI &amp; LLMs</h3>
+            <ul>
+              <li>Prompt Engineering</li>
+              <li>Claude API</li>
+              <li>Tool Use &amp; Function Calling</li>
+              <li>MCP (Model Context Protocol)</li>
+              <li>Context Engineering</li>
+              <li>AI Agents</li>
+            </ul>
+          </article>
+
+          <!-- Group 2: Software development skills -->
+          <article class="skill-group">
+            <h3>Development</h3>
+            <ul>
+              <li>Python</li>
+              <li>JavaScript</li>
+              <li>Git &amp; GitHub</li>
+              <li>CLI &amp; Terminal</li>
+              <li>API Integration</li>
+              <li>GitHub Pages</li>
+            </ul>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- =====================
+           CONTACT SECTION
+           Three ways to reach Hritik:
+           GitHub, LinkedIn, and email.
+           Uses an <address> element — semantically correct for contact info.
+      ========================== -->
+      <section id="contact">
+        <h2>Get In Touch</h2>
+        <p>Open to AI engineering roles, collaborations, and conversations about LLMs and agents.</p>
+
+        <address>
+          <!-- Replace with actual URLs and email before deploying -->
+          <a href="https://github.com/hritikdatta" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://linkedin.com/in/hritikdatta" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:hritik@example.com">Email</a>
+        </address>
+      </section>
+
+    </main>
+
+    <!-- =====================
+         FOOTER
+         Minimal footer with copyright.
+         Year can be made dynamic via script.js later.
+    ========================== -->
+    <footer>
+      <p>&copy; 2026 Hritik Datta. Built with Claude Code.</p>
+    </footer>
+
+    <!-- script.js will be linked here — at the bottom so HTML loads first -->
+    <!-- <script src="script.js"></script> -->
+
+  </body>
+</html>
